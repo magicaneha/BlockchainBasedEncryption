@@ -1,0 +1,34 @@
+Data Upload process
+
+Each member is pre-registered in the Smart Contracts in the form of a uniquely
+identifiable field. Each time a sender (S) wants to add a new document he/she
+puts his/her credentials; Smart Contracts checks the authenticity of the sender;
+after confirmation, S can upload the document. Once the document has been
+successfully uploaded to the system, a CA checks the integrity of the data.
+• Thereafter, using Content Extraction Signature (CES) (17) CA signs the document
+using its private key. After the signature algorithm is completed, CA
+encrypts the data with its symmetric key KCA and encrypts his/her symmetric
+encryption key with V’s public key Vk and also adds a hash value to be entered
+in the blockchain later, CA sends the encrypted data to V.
+• After receiving the encrypted information from CA, V decrypts KCA with its
+private key and obtains the certified document. The V extracts the signature
+using Content Extraction Access Structure algorithm (CEAS) (17), and verifies
+the CA’s signature. Next, V verifies the correctness of the full signature; if it
+is valid it proceeds to the next step, else it returns with failure.
+
+
+
+This smart contract defines a Authentication struct that contains the UserID and AuthTime properties. When a new user is authenticated, a new instance of this struct is created with the current time and the user ID. The Authenticate function checks if the user has already been authenticated and if not, it adds the new authentication information to the world state.
+
+To use this smart contract, you would need to deploy it to a blockchain network that supports smart contracts written in Go, such as Hyperledger Fabric. Once deployed, clients could call the Authenticate function to add new authentication information for a given user ID. The world state of the blockchain network would contain a record of all authenticated users, along with the time that they were authenticated.
+
+
+This smart contract defines a User struct that contains the ID, Name, Email, MetaData, and CreatedAt properties. When a new user is registered, a new instance of this struct is created with the provided information, and the CreatedAt property is set to the current time. The RegisterUser function checks if the user already exists and if not, it adds the new user information to the world state.
+
+To retrieve a user's information, clients could call the GetUser function with the user's ID. The function would return a pointer to the User struct containing the user's information, or an error if the user does not exist.
+
+To pre-register users with uniquely identifiable fields, clients could call the RegisterUser function with the appropriate information for each user. The ID property could be used as the unique identifier for each user, and clients could provide any additional metadata in the MetaData field.
+
+sing the access policy specified in the accessPolicy variable, it generates the ABE ciphertext by encrypting r as a byte slice with the public key. It then serializes the encrypted data and ABE ciphertext as a single byte slice.
+
+The resulting byte slice represents the encrypted document, which can be transmitted or stored as needed. Note that this implementation assumes that the accessPolicy variable has been defined elsewhere and contains a valid access policy for CP-ABE.
