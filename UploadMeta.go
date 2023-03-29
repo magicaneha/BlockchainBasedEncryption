@@ -1,3 +1,8 @@
+
+/*
+@Neha Shecter
+*/
+
 func storeDocument(encryptedDocument []byte, documentID string, accessPolicy string, awsBucketName string, hyperledgerChannelName string) error {
 	// Connect to the AWS S3 bucket
 	sess, err := session.NewSession(&aws.Config{
